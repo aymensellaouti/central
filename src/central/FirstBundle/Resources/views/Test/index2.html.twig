@@ -1,0 +1,10 @@
+cc {{ maVariable }}
+
+<dl>
+    {% for cle,valeur in app.session.get('todos') %}
+       <dt>{{ cle }}</dt>
+       <dd>{{ valeur }}</dd>
+    {% else %}
+        Session innexistante
+    {% endfor %}
+</dl>

@@ -1,0 +1,11 @@
+central_first_homepage:
+    path:     /index
+    defaults: { _controller: centralFirstBundle:Default:index }
+
+central_first_test:
+    path:     /test/{var}
+    defaults: { _controller: centralFirstBundle:Default:test }
+
+central_todo_list:
+    path:     /todo/list
+    defaults: { _controller: centralFirstBundle:ToDo:index }
