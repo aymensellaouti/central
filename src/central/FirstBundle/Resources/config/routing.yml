@@ -9,3 +9,15 @@ central_first_test:
 central_todo_list:
     path:     /todo/list
     defaults: { _controller: centralFirstBundle:ToDo:index }
+
+central_todo_add:
+    path:     /todo/add/{cle}/{valeur}
+    defaults: { _controller: centralFirstBundle:ToDo:add }
+
+central_todo_update:
+    path:     /todo/update/{cle}/{valeur}
+    defaults: { _controller: centralFirstBundle:ToDo:update }
+
+central_todo_delete:
+    path:     /todo/delete/{cle}
+    defaults: { _controller: centralFirstBundle:ToDo:delete }

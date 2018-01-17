@@ -22,8 +22,87 @@ class ToDoController extends Controller
             //J'ajoute le flashbag
             $session->getFlashBag()->add('info','Session crée avec succées');
         }
-
         //Si oui ou non je dois afficher la liste
         return $this->render('@centralFirst/Todo/listTodo.html.twig');
+    }
+
+    public function addAction(Request $request, $cle, $valeur){
+        //Recupérer la session
+         $session = $request->getSession();
+        //Si nelle session
+        if(!$session->has('mesTodos')){
+            // error
+            // forward
+            $session->getFlashBag()->add('error','Session innexistante !!!!');
+        }else{
+            $todos = $session->get('mesTodos');
+            //Si ok
+            // si exist
+            if(isset($todos[$cle])){
+                $session->getFlashBag()->add('error','Todo existant !!!!');
+                // error
+                // forward
+            }else{
+                // si  exist on ajoute
+                $todos[$cle]=$valeur;
+                $session->set('mesTodos',$todos);
+                $messageSucces = 'Le Todo '.$cle.' de valeur '.$valeur.' a été ajouté avec succées';
+                $session->getFlashBag()->add('success',$messageSucces);
+            }
+        }
+        return $this->forward('centralFirstBundle:ToDo:index');
+    }
+    public function updateAction(Request $request, $cle, $valeur){
+        //Recupérer la session
+        $session = $request->getSession();
+        //Si nelle session
+        if(!$session->has('mesTodos')){
+            // error
+            // forward
+            $session->getFlashBag()->add('error','Session innexistante !!!!');
+        }else{
+            $todos = $session->get('mesTodos');
+            //Si ok
+            // si exist
+            if(!isset($todos[$cle])){
+                $session->getFlashBag()->add('error','Todo innexistant !!!!');
+                // error
+                // forward
+            }else{
+                // si  exist on ajoute
+                $todos[$cle]=$valeur;
+                $session->set('mesTodos',$todos);
+                $messageSucces = 'Le Todo '.$cle.' de valeur '.$valeur.' a été modifié avec succées';
+                $session->getFlashBag()->add('success',$messageSucces);
+            }
+        }
+        return $this->forward('centralFirstBundle:ToDo:index');
+    }
+    public function deleteAction(Request $request, $cle){
+        //Recupérer la session
+        $session = $request->getSession();
+        //Si nelle session
+        if(!$session->has('mesTodos')){
+            // error
+            // forward
+            $session->getFlashBag()->add('error','Session innexistante !!!!');
+        }else{
+            $todos = $session->get('mesTodos');
+            //Si ok
+            // si exist
+            if(!isset($todos[$cle])){
+                $session->getFlashBag()->add('error','Todo innexistant !!!!');
+                // error
+                // forward
+            }else{
+                // si  exist on supprime
+                unset($todos[$cle]);
+                $session->set('mesTodos',$todos);
+                $messageSucces = 'Le Todo '.$cle.' a été supprimé avec succées';
+                $session->getFlashBag()->add('success',$messageSucces);
+            }
+        }
+        return $this->forward('centralFirstBundle:ToDo:index');
+
     }
 }
