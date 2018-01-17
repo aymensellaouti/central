@@ -1,26 +1,10 @@
-<html>
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-</head>
-<body>
+{% extends '::base.html.twig' %}
 
-{% for message in app.session.flashbag.get('info') %} 
-   <div class="alert alert-info">
-       {{ message }}
-   </div>
+{% block title %}
+   Todo
+{% endblock %}
 
-{% endfor %}
-{% for message in app.session.flashbag.get('success') %}
-    <div class="alert alert-success">
-        {{ message }}
-    </div>
-{% endfor %}
-{% for message in app.session.flashbag.get('error') %} }
-    <div class="alert alert-danger">
-        {{ message }}
-    </div>
-{% endfor %}
-<h1>Liste Todo</h1>
+{% block body %}
 {% for indice, var in app.session.get('mesTodos') %}
    <ol class="list-group">
        <li class="list-group-item">
@@ -28,6 +12,4 @@
        </li>
    </ol>
 {% endfor %}
-
-</body>
-</html>
+{% endblock %}
