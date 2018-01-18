@@ -1,15 +1,19 @@
 {% extends '::base.html.twig' %}
 
 {% block title %}
-   Todo
+    {{ parent() }} 
+    Todo
 {% endblock %}
 
 {% block body %}
 {% for indice, var in app.session.get('mesTodos') %}
    <ol class="list-group">
        <li class="list-group-item">
-           {{ indice }} : {{ var }}
+           {{ indice }} : {{ var }}  <a href="{{ path('central_todo_delete',{'cle':indice}) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
        </li>
    </ol>
 {% endfor %}
+
+
+
 {% endblock %}

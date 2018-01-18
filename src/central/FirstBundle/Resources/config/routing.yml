@@ -21,3 +21,17 @@ central_todo_update:
 central_todo_delete:
     path:     /todo/delete/{cle}
     defaults: { _controller: centralFirstBundle:ToDo:delete }
+
+central_personne_list:
+    path:     /personne/list
+    defaults: { _controller: centralFirstBundle:Personne:index }
+
+central_personne_add:
+    path:     /personne/add/{prenom}/{nom}/{age}
+    defaults: { _controller: centralFirstBundle:Personne:add }
+    requirements:
+        age: \d{2}
+
+central_personne_one:
+    path:     /personne/info/{personne}
+    defaults: { _controller: centralFirstBundle:Personne:onePersonne }

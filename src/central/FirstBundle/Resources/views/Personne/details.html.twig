@@ -1,0 +1,38 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    {% if personne is defined  %}
+
+        <div class="col-xs-6">
+            <div class="span6">
+                <div class="media user">
+                    <a class="media-avatar pull-left" href="#">
+                        <img src="{{ asset('images/user.png') }}">
+                    </a>
+                    <div class="media-body">
+                        <h3 class="media-title">
+                            {{ personne.prenom }} {{ personne.nom }}
+                        </h3>
+                        <p>
+                            <small class="muted">{{ personne.age }}</small></p>
+                        <div class="media-option btn-group shaded-icon">
+                            <button class="btn btn-small">
+                                <i class="icon-envelope"></i>
+                            </button>
+                            <button class="btn btn-small">
+                                <i class="icon-share-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    {% else %}
+        <h1>
+            Aucune personne trouvée.
+        </h1>
+    {% endif %}
+
+{% endblock %}
