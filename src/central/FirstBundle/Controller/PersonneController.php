@@ -42,4 +42,47 @@ class PersonneController extends Controller
             'personne'=>$personne
         ));
     }
+
+    public function updatePersonneAction(Request $request, Personne $personne=null, $nom=null, $prenom=null, $age=null){
+        $session=$request->getSession();
+        // si personne existe
+        if($personne) {
+            $em = $this->getDoctrine()->getManager();
+            // je met a jour la personne
+            $personne->setNom($nom);
+            $personne->setPrenom($prenom);
+            $personne->setAge($age);
+            // Success Message
+            $messageSucces = $prenom.' '.$nom.' a été mis à jour avec succées';
+            $session->getFlashBag()->add('success', $messageSucces);
+            // insérer dans la base
+            $em->flush();
+        }
+        //Sinon
+        else{
+            // Error Message
+            $session->getFlashBag()->add('error', 'personne not found');
+        }
+        return $this->forward('centralFirstBundle:Personne:index');
+    }
+
+    public function deletePersonneAction(Request $request, Personne $personne=null){
+        $session=$request->getSession();
+        // si personne existe
+        if($personne) {
+            $em = $this->getDoctrine()->getManager();
+            // Success Message
+            $messageSucces = $personne->getNom().' '.$personne->getPrenom().'a été supprimé avec succées';
+            $session->getFlashBag()->add('success', $messageSucces);
+            // insérer dans la base
+            $em->remove($personne);
+            $em->flush();
+        }
+        //Sinon
+        else{
+            // Error Message
+            $session->getFlashBag()->add('error', 'personne not found');
+        }
+        return $this->forward('centralFirstBundle:Personne:index');
+    }
 }

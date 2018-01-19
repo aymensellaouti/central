@@ -35,3 +35,11 @@ central_personne_add:
 central_personne_one:
     path:     /personne/info/{personne}
     defaults: { _controller: centralFirstBundle:Personne:onePersonne }
+
+central_personne_update:
+    path:     /personne/update/{personne}/{prenom}/{nom}/{age}
+    defaults: { _controller: centralFirstBundle:Personne:updatePersonne }
+
+central_personne_delete:
+    path:     /personne/delete/{personne}
+    defaults: { _controller: centralFirstBundle:Personne:deletePersonne }
