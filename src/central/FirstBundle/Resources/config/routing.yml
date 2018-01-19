@@ -43,3 +43,7 @@ central_personne_update:
 central_personne_delete:
     path:     /personne/delete/{personne}
     defaults: { _controller: centralFirstBundle:Personne:deletePersonne }
+
+add_etudiant:
+    path: /etudiant/add
+    defaults: {_controller: centralFirstBundle:Etudiant:add}
